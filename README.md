@@ -18,7 +18,7 @@ Eaay Library UploadFile
 
   include_once 'UploadFile.php';
 
-  $file = new UploadFile( 'file-plugin-zip' );
+  $file = new UploadFile( 'myuploadfil' );
   $file->setDir( '/path/to/directory' );
   $file->setName( date( 'd_m_y_h_i_s' ) . '_' . uniqid( ) );
   $file->setAllow( [ 'jpg', 'jpeg', 'png', 'gif' ] );

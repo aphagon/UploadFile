@@ -2,10 +2,8 @@
 /**
  * @author 		Aphagon < https://www.fb.com/vilet.sz >
  * @link 		https://aphagon.me
- * @package 	Sloth Framework
  * @since 		1.0.0
  */
-
 if ( ! class_exists( 'UploadFile' ) ) {
     class UploadFile {
 
@@ -218,6 +216,33 @@ if ( ! class_exists( 'UploadFile' ) ) {
          */
         public function getNameWithExtension( ) {
             return $this->extension === '' ? $this->file_name : sprintf( '%s.%s', $this->file_name, $this->extension );
+        }
+
+        /**
+         * Get Full Directory Image.
+         *
+         * @return string
+         */
+        public function getFullPath( ) {
+            return $this->directory . '/' . $this->getNameWithExtension( );
+        }
+
+        /**
+         * Get Full Directory Image.
+         *
+         * @return string
+         */
+        public function getFullUrl( ) {
+            $file_path = $this->directory . '/' . $this->getNameWithExtension( );
+            $file_path = str_replace( '\\', '/', $file_path );
+            $file_path = str_replace( $_SERVER[ 'DOCUMENT_ROOT' ], '', $file_path );
+
+            $ssi = 'http';
+            if ( isset( $_SERVER[ 'HTTPS' ] ) && ! empty( $_SERVER[ 'HTTPS' ] ) && $_SERVER[ 'HTTPS' ] != 'off' ) {
+                $ssi = 'https';
+            }
+
+            return "{$ssi}://" . $_SERVER[ 'HTTP_HOST' ] . $file_path;
         }
 
         /**

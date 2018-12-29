@@ -88,6 +88,7 @@ if ( ! class_exists( 'UploadFile' ) ) {
                     $_FILES[ $key ][ 'name' ],
                     $this->errorMessages[ $_FILES[ $key ][ 'error' ] ]
                 );
+                return false;
             }
 
             $this->fileInfo = $_FILES[ $key ];
